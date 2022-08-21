@@ -2,25 +2,35 @@
   import { fade } from 'svelte/transition';
 
   import Header from '$lib/example/header/Header.svelte';
-  import Index from '$lib/Index.svelte';
   import Footer from '$lib/example/footer/Footer.svelte';
+  import Unavailable from '$lib/example/Unavailable.svelte';
 
-  import { theme } from '$lib/stores/theme';
-
-  $: {
-    document.documentElement.setAttribute('data-theme', $theme);
-    document.documentElement.classList.value = $theme;
-  }
+  document.documentElement.setAttribute('data-theme', 'dark');
+  document.documentElement.classList.value = 'dark';
 </script>
 
-{#await theme.load() then}
-  <div
-    class="bg-base-100 text-base-content h-screen flex flex-col overflow-y-auto overflow-x-hidden"
-  >
-    <Header />
-    <main class="flex-1" in:fade={{ delay: 300, duration: 1000 }}>
-      <Index />
-    </main>
-    <Footer />
-  </div>
-{/await}
+<div
+  class="bg-base-100 text-base-content min-h-screen flex flex-col overflow-x-hidden"
+>
+  <Header />
+  {#await fetch('https://netdata-proxy.app.jet-black.xyz/') then result}
+    {#if result.status === 200}
+      <main
+        class="flex flex-col flex-1"
+        in:fade={{ delay: 300, duration: 1000 }}
+      >
+        <iframe
+          class="flex-1"
+          title="Netdata iframe"
+          src="https://netdata-proxy.app.jet-black.xyz/"
+        />
+      </main>
+    {:else}
+      <Unavailable />
+    {/if}
+  {:catch error}
+    <Unavailable />
+  {/await}
+
+  <Footer />
+</div>

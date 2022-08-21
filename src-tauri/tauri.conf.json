@@ -1,13 +1,13 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "yarn svelte:build",
-    "beforeDevCommand": "yarn svelte:dev",
-    "devPath": "http://localhost:3000",
+    "beforeBuildCommand": "pnpm svelte:build",
+    "beforeDevCommand": "pnpm svelte:dev",
+    "devPath": "http://localhost:3000/",
     "distDir": "../dist"
   },
   "package": {
-    "productName": "svelte-tauri-template",
+    "productName": "jb-monitor",
     "version": "0.1.0"
   },
   "tauri": {
