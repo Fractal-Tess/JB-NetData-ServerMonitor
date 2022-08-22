@@ -1,9 +1,9 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "pnpm svelte:build",
     "beforeDevCommand": "pnpm svelte:dev",
-    "devPath": "http://localhost:3000/",
+    "devPath": "http://localhost:3000",
+    "beforeBuildCommand": "pnpm svelte:build",
     "distDir": "../dist"
   },
   "package": {
@@ -48,7 +48,7 @@
       },
       "resources": [],
       "shortDescription": "",
-      "targets": "app",
+      "targets": "all",
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
