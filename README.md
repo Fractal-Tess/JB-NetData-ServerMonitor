@@ -2,7 +2,7 @@
 
 <div align="center">
 <br />
-<img src="https://raw.githubusercontent.com/Fractal-Tess/Jet-Black-Server-Monitor/app.jpg" width="580" style="border-radius:2rem"/>
+<img src="https://github.com/Fractal-Tess/Jet-Black-Server-Monitor/blob/main/app.jpg" width="580" style="border-radius:2rem"/>
 </div>
 <br />
 <br />
