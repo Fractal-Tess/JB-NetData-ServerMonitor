@@ -7,12 +7,20 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "jb-monitor",
-    "version": "0.1.0"
+    "productName": "jet-black-server-monitor",
+    "version": "0.1.1"
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "all": false,
+      "window": {
+        "close": true,
+        "minimize": true,
+        "startDragging": true
+      },
+      "shell": {
+        "open": true
+      }
     },
     "bundle": {
       "active": true,
@@ -29,8 +37,8 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.svelte-tauri.template",
-      "longDescription": "",
+      "identifier": "xyz.jet-black.app.server-monitor",
+      "longDescription": "A simple tauri app with an iFrame of a netdata web resource, hosted on the server for diagnostic purposes",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -55,9 +63,11 @@
     },
     "windows": [
       {
-        "title": "Svelte-Tauri Template",
+        "title": "Jet-Black Server Monitor",
         "width": 1200,
         "height": 800,
+        "minWidth": 1200,
+        "minHeight": 800,
         "fullscreen": false,
         "transparent": true,
         "decorations": false

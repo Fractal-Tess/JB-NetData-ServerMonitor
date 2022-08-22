@@ -7,23 +7,21 @@
 
   document.documentElement.setAttribute('data-theme', 'dark');
   document.documentElement.classList.value = 'dark';
+
+  const resource = 'https://server-monitor.app.jet-black.xyz';
 </script>
 
 <div
   class="bg-base-100 text-base-content min-h-screen flex flex-col overflow-x-hidden"
 >
   <Header />
-  {#await fetch('https://netdata-proxy.app.jet-black.xyz/') then result}
+  {#await fetch(resource) then result}
     {#if result.status === 200}
       <main
         class="flex flex-col flex-1"
         in:fade={{ delay: 300, duration: 1000 }}
       >
-        <iframe
-          class="flex-1"
-          title="Netdata iframe"
-          src="https://netdata-proxy.app.jet-black.xyz/"
-        />
+        <iframe class="flex-1" title="Netdata iframe" src={resource} />
       </main>
     {:else}
       <Unavailable />

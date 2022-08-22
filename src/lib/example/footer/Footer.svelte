@@ -9,7 +9,8 @@
   </a>
 
   <a
-    href="https://github.com/Fractal-Tess/Sveltekit-Tauri-Template"
+    target="_blank"
+    href="https://github.com/Fractal-Tess/Jet-Black-Server-Monitor"
     class="border-b-2 border-secondary">GitHub</a
   >
 </div>

@@ -1,11 +1,11 @@
 [package]
-name = "app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
-default-run = "app"
+name = "jet-black-server-monitor"
+version = "0.1.1"
+description = "A simple tauri app with empded iframe of netdata hosted on the server for diagnostic purposes."
+authors = ["Fractal-Tess"]
+license = "MIT"
+repository = "https://github.com/Fractal-Tess/JB-NetData-ServerMonitor"
+default-run = "jet-black-server-monitor"
 edition = "2021"
 rust-version = "1.57"
 
@@ -20,7 +20,7 @@ sha2 = "0.10.2"
 tauri-plugin-window-state = { git = "https://github.com/tauri-apps/tauri-plugin-window-state", branch = "dev" }
 tauri-plugin-store = { git = "https://github.com/tauri-apps/tauri-plugin-store", branch="dev" }
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.0.5", features = ["api-all", "devtools"] }
+tauri = { version = "1.0.5", features = ["devtools", "shell-open", "window-close", "window-minimize", "window-start-dragging"] }
 
 [features]
 # by default Tauri runs in production mode
@@ -32,7 +32,7 @@ custom-protocol = [ "tauri/custom-protocol" ]
 
 
 [profile.release]
-# panic ='abort'
-# codegen-units= 1
-# lto = true
-# opt-level = 's'
+panic ='abort'
+codegen-units= 1
+lto = true
+opt-level = 's'
