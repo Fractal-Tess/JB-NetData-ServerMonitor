@@ -1,9 +1,9 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
 
-  import Header from '$lib/example/header/Header.svelte';
-  import Footer from '$lib/example/footer/Footer.svelte';
-  import Unavailable from '$lib/example/Unavailable.svelte';
+  import Header from '$lib/header/Header.svelte';
+  import Footer from '$lib/footer/Footer.svelte';
+  import Unavailable from '$lib/Unavailable.svelte';
 
   document.documentElement.setAttribute('data-theme', 'dark');
   document.documentElement.classList.value = 'dark';
