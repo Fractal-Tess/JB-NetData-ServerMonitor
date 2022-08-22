@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../../node_modules/@fontsource/fira-code/index.css';
+@import '../../node_modules/@fontsource/fira-mono/index.css';
+@import '../../node_modules/@fontsource/fira-sans/index.css';
+
 html {
   -webkit-font-smoothing: antialiased;
 }
