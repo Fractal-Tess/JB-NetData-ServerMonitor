@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../../node_modules/@fontsource/fira-code/index.css';
-@import '../../node_modules/@fontsource/fira-mono/index.css';
-@import '../../node_modules/@fontsource/fira-sans/index.css';
+@import '../../node_modules/@fontsource/roboto/index.css';
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -40,11 +38,4 @@ html {
   --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
   --ease-elastic-4: cubic-bezier(0.5, 1.5, 0.75, 1.25);
   --ease-elastic-5: cubic-bezier(0.5, 1.75, 0.75, 1.25);
-}
-
-.dev {
-  outline: 2px solid red;
-}
-.dev-border {
-  border: 3px solid red;
 }
