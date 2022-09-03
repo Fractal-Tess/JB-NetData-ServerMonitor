@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "jet-black-server-monitor",
+    "productName": "url-loader",
     "version": "0.1.1"
   },
   "tauri": {
@@ -37,7 +37,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "xyz.jet-black.app.server-monitor",
+      "identifier": "xyz.url-loader",
       "longDescription": "A simple tauri app with an iFrame of a netdata web resource, hosted on the server for diagnostic purposes",
       "macOS": {
         "entitlements": null,
@@ -63,11 +63,9 @@
     },
     "windows": [
       {
-        "title": "Jet-Black Server Monitor",
+        "title": "URL Loader",
         "width": 1200,
         "height": 800,
-        "minWidth": 1200,
-        "minHeight": 800,
         "fullscreen": false,
         "transparent": true,
         "decorations": false
