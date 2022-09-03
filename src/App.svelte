@@ -1,34 +1,51 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
 
-  import Header from '$lib/header/Header.svelte';
-  import Footer from '$lib/footer/Footer.svelte';
-  import Unavailable from '$lib/Unavailable.svelte';
+  import Header from '$lib/Header.svelte';
+
+  import { WindowState, ws } from '$lib/stores/windowStore';
+  ws.load();
 
   document.documentElement.setAttribute('data-theme', 'dark');
   document.documentElement.classList.value = 'dark';
-
-  const resource = 'https://server-monitor.app.jet-black.xyz';
 </script>
 
 <div
   class="bg-base-100 text-base-content min-h-screen flex flex-col overflow-x-hidden"
+  in:fade
 >
-  <Header />
-  {#await fetch(resource) then result}
-    {#if result.status === 200}
-      <main
-        class="flex flex-col flex-1"
-        in:fade={{ delay: 300, duration: 1000 }}
-      >
-        <iframe class="flex-1" title="Netdata iframe" src={resource} />
-      </main>
-    {:else}
-      <Unavailable />
-    {/if}
-  {:catch error}
-    <Unavailable />
-  {/await}
+  <Header
+    backArrowOnClick={ws.goBack}
+    showBackArrow={$ws.winState === WindowState.ShowIframe}
+  />
 
-  <Footer />
+  <main class="flex-1 flex-col flex items-center justify-center">
+    {#if $ws.winState === WindowState.ShowInput}
+      <form
+        on:submit|preventDefault={() => {
+          if ($ws.endpoint.length) ws.showIFrame();
+        }}
+        class="form-control space-y-4 text-center"
+      >
+        <h1 class="text-secondary font-bold text-3xl mb-8">URL Loader</h1>
+        <label class="input-group">
+          <span>URL</span>
+          <input
+            bind:value={$ws.endpoint}
+            type="text"
+            placeholder="example.com"
+            class="input input-group-lg input-bordered border-secondary focus:border-secondary focus:outline-none focus:ring-0"
+          />
+        </label>
+        <button class="btn btn-outline btn-secondary">Load!</button>
+      </form>
+    {:else}
+      <iframe
+        src={$ws.endpoint}
+        frameborder="0"
+        title="embeded url"
+        class="flex-1 w-full"
+      />
+    {/if}
+  </main>
 </div>
