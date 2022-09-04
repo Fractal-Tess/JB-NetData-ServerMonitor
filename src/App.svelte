@@ -4,6 +4,7 @@
   import Header from '$lib/Header.svelte';
 
   import { WindowState, ws } from '$lib/stores/windowStore';
+  import Footer from '$lib/Footer.svelte';
   ws.load();
 
   document.documentElement.setAttribute('data-theme', 'dark');
@@ -19,22 +20,49 @@
     showBackArrow={$ws.winState === WindowState.ShowIframe}
   />
 
-  <main class="flex-1 flex-col flex items-center justify-center">
+  <main class="flex-1 flex-col flex items-center ">
     {#if $ws.winState === WindowState.ShowInput}
+      <h1 class="text-secondary font-bold text-3xl my-16">URL Loader</h1>
+      {#if $ws.history.length}
+        <h2 class="text-secondary font-bold text-3xl mb-8">History</h2>
+        <div
+          class="w-80 flex flex-col space-y-2 border-2 border-secondary rounded-xl p-2"
+        >
+          {#each $ws.history as endpoint}
+            <div class="flex justify-between w-full px-4">
+              <button
+                on:click={() => {
+                  ws.deleteFromHistory(endpoint);
+                }}
+              >
+                <i class="fa-solid fa-xmark" />
+              </button>
+              <span> {endpoint}</span>
+              <button
+                on:click={() => {
+                  $ws.endpoint = endpoint;
+                  ws.showIFrame();
+                }}
+                class="btn btn-outline btn-xs btn-secondary">Load</button
+              >
+            </div>
+          {/each}
+        </div>
+      {/if}
+
       <form
         on:submit|preventDefault={() => {
           if ($ws.endpoint.length) ws.showIFrame();
         }}
-        class="form-control space-y-4 text-center"
+        class="form-control space-y-4 text-center my-20"
       >
-        <h1 class="text-secondary font-bold text-3xl mb-8">URL Loader</h1>
-        <label class="input-group">
-          <span>URL</span>
+        <label class="input-group relative">
+          <span class="shadow-md shadow-secondary ">URL</span>
           <input
             bind:value={$ws.endpoint}
             type="text"
-            placeholder="example.com"
-            class="input input-group-lg input-bordered border-secondary focus:border-secondary focus:outline-none focus:ring-0"
+            placeholder="http://localhost:3000"
+            class="input input-group-lg input-bordered border-secondary focus:border-secondary focus:outline-none focus:ring-0 shadow-md shadow-secondary"
           />
         </label>
         <button class="btn btn-outline btn-secondary">Load!</button>

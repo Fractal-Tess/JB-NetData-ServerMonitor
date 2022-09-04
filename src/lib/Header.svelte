@@ -1,7 +1,7 @@
 <script lang="ts">
   import { appWindow } from '@tauri-apps/api/window';
   import { Rive } from 'rive-js';
-  import accent_tree from '$assets/accent_tree.riv';
+  import tree from '$assets/tree.riv';
   import { onMount } from 'svelte';
 
   export let showBackArrow = true;
@@ -12,7 +12,7 @@
   onMount(() => {
     new Rive({
       canvas,
-      src: accent_tree,
+      src: tree,
       autoplay: true,
     });
   });

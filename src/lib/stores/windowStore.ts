@@ -9,32 +9,37 @@ export enum WindowState {
 type Config = {
   endpoint: string;
   winState: WindowState;
+  history: string[];
 };
 
 const createWindowStore = () => {
   const defaultConfig: Config = {
     endpoint: '',
     winState: WindowState.ShowInput,
+    history: [],
   };
 
+  // store.set('config', defaultConfig);
   const { subscribe, set, update } = writable<Config>(defaultConfig);
 
   return {
     subscribe,
     set: (ws: Config) => {
-      // This is not working for some reason
-
       store.set('config', ws);
       set(ws);
     },
     load: async () => {
-      // ^^ Same
       const config = await store.get<Config>('config');
-      if (config) set(config);
+
+      if (config) set({ ...config, winState: WindowState.ShowInput });
     },
     showIFrame: () => {
       update((ws: Config) => {
         ws.winState = WindowState.ShowIframe;
+        if (!ws.history.includes(ws.endpoint)) {
+          ws.history.push(ws.endpoint);
+          store.set('config', ws);
+        }
         return ws;
       });
     },
@@ -42,6 +47,14 @@ const createWindowStore = () => {
     goBack: () => {
       update((ws: Config) => {
         ws.winState = WindowState.ShowInput;
+        return ws;
+      });
+    },
+    deleteFromHistory: (endpoint: string) => {
+      update((ws: Config) => {
+        ws.history = ws.history.filter(
+          (endpointHistory) => endpointHistory !== endpoint
+        );
         return ws;
       });
     },
