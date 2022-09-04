@@ -3,8 +3,7 @@
 
   import Header from '$lib/Header.svelte';
 
-  import { WindowState, ws } from '$lib/stores/windowStore';
-  import Footer from '$lib/Footer.svelte';
+  import { WindowMode, ws } from '$lib/stores/windowStore';
   ws.load();
 
   document.documentElement.setAttribute('data-theme', 'dark');
@@ -17,11 +16,11 @@
 >
   <Header
     backArrowOnClick={ws.goBack}
-    showBackArrow={$ws.winState === WindowState.ShowIframe}
+    showBackArrow={$ws.windowMode === WindowMode.iFrameMode}
   />
 
   <main class="flex-1 flex-col flex items-center ">
-    {#if $ws.winState === WindowState.ShowInput}
+    {#if $ws.windowMode === WindowMode.InputMode}
       <h1 class="text-secondary font-bold text-3xl my-16">URL Loader</h1>
       {#if $ws.history.length}
         <h2 class="text-secondary font-bold text-3xl mb-8">History</h2>

@@ -1,21 +1,21 @@
 import { writable } from 'svelte/store';
 import { store } from './tauriStore';
 
-export enum WindowState {
-  ShowInput,
-  ShowIframe,
+export enum WindowMode {
+  InputMode,
+  iFrameMode,
 }
 
 type Config = {
   endpoint: string;
-  winState: WindowState;
+  windowMode: WindowMode;
   history: string[];
 };
 
 const createWindowStore = () => {
   const defaultConfig: Config = {
     endpoint: '',
-    winState: WindowState.ShowInput,
+    windowMode: WindowMode.InputMode,
     history: [],
   };
 
@@ -30,12 +30,18 @@ const createWindowStore = () => {
     },
     load: async () => {
       const config = await store.get<Config>('config');
-
-      if (config) set({ ...config, winState: WindowState.ShowInput });
+      // Always start in input mode
+      console.log(config);
+      if (config)
+        set({
+          ...config,
+          windowMode: WindowMode.InputMode,
+          history: config.history ?? [],
+        });
     },
     showIFrame: () => {
       update((ws: Config) => {
-        ws.winState = WindowState.ShowIframe;
+        ws.windowMode = WindowMode.iFrameMode;
         if (!ws.history.includes(ws.endpoint)) {
           ws.history.push(ws.endpoint);
           store.set('config', ws);
@@ -46,7 +52,7 @@ const createWindowStore = () => {
 
     goBack: () => {
       update((ws: Config) => {
-        ws.winState = WindowState.ShowInput;
+        ws.windowMode = WindowMode.InputMode;
         return ws;
       });
     },
