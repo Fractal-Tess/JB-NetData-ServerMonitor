@@ -1,8 +1,21 @@
 <script lang="ts">
   import { appWindow } from '@tauri-apps/api/window';
+  import { Rive } from 'rive-js';
+  import accent_tree from '$assets/accent_tree.riv';
+  import { onMount } from 'svelte';
 
   export let showBackArrow = true;
   export let backArrowOnClick = () => {};
+
+  let canvas;
+
+  onMount(() => {
+    new Rive({
+      canvas,
+      src: accent_tree,
+      autoplay: true,
+    });
+  });
 </script>
 
 <div
@@ -17,7 +30,9 @@
     {/if}
   </div>
 
-  <div>
+  <div class="h-full">
+    <canvas class="inline-block h-full pb-2" bind:this={canvas} />
+
     <a
       target="_blank"
       href="https://github.com/Fractal-Tess/URL-Loader"
