@@ -18,7 +18,11 @@
   </div>
 
   <div>
-    <a target="_blank" href="https://github.com/Fractal-Tess/URL-Loader">
+    <a
+      target="_blank"
+      href="https://github.com/Fractal-Tess/URL-Loader"
+      class="hover:text-secondary"
+    >
       <i class="fa-brands fa-github h-6" />
     </a>
     <button
