@@ -19,12 +19,11 @@ const config = {
     themes: [
       {
         dark: {
-          ...require('daisyui/src/colors/themes')['[data-theme=dark]'],
           primary: '#137cb5',
           secondary: '#e80d52',
           accent: '#f4cd73',
-          neutral: '#1F1721',
-          'base-100': '#1E1E1E',
+          neutral: '#2f2f2f',
+          'base-100': '#1f1f1f',
           info: '#35B0F3',
           success: '#1B743C',
           warning: '#F38A12',
