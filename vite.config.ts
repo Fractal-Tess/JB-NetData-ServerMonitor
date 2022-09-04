@@ -18,10 +18,12 @@ export default defineConfig({
       $styles: resolve('src/styles/app.scss'),
       $lib: resolve('src/lib'),
       $src: resolve('src/'),
+      $assets: resolve('src/assets/'),
     },
   },
 
   publicDir: false,
+  assetsInclude: '**/*.riv',
 
   clearScreen: false,
 
